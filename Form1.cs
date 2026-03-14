@@ -16,5 +16,19 @@ namespace project_compiler
         {
             InitializeComponent();
         }
+
+        private void btnScanner_Click(object sender, EventArgs e)
+        {
+            dgvTokens.Columns.Clear();
+            dgvTokens.Columns.Add("Token", "Token");
+            dgvTokens.Columns.Add("Type", "Type");
+
+            var scanner = new Scanner();
+            var tokens = scanner.Scan(txtInput.Text);
+
+            dgvTokens.Rows.Clear();
+            foreach (var token in tokens)
+                dgvTokens.Rows.Add(token.Value, token.Type.ToString());
+        }
     }
 }
